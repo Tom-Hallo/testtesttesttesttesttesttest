@@ -52,12 +52,11 @@
 
 import re
 
-# Khởi tạo các biến lưu trữ dữ liệu toàn cục trong phiên chạy
 username = ""
 title = ""
 description = ""
 hashtags = []
-has_data = False  # Cờ kiểm tra xem đã nhập dữ liệu ở Chức năng 1 chưa
+has_data = False  
 
 while True:
     print("\n" + "="*40)
@@ -82,9 +81,7 @@ while True:
         print("❌ Lỗi: Lựa chọn không nằm trong phạm vi từ 1 đến 5. Vui lòng nhập lại!")
         continue
 
-    # CHỨC NĂNG 1: NHẬP DỮ LIỆU VÀ XEM BÁO CÁO THỐNG KÊ
     if choice == 1:
-        # Bẫy 1: Tên tài khoản TikTok rỗng hoặc chỉ có khoảng trắng
         while True:
             username = input("Nhập tên tài khoản người đăng: ").strip()
             if not username:
