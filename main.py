@@ -60,7 +60,6 @@ hashtags = []
 has_data = False  # Cờ kiểm tra xem đã nhập dữ liệu ở Chức năng 1 chưa
 
 while True:
-    # Hiển thị giao diện menu dòng lệnh CLI
     print("\n" + "="*40)
     print(" HỆ THỐNG KIỂM DUYỆT NỘI DUNG TIKTOK")
     print("="*40)
@@ -73,14 +72,12 @@ while True:
 
     choice_input = input("Mời đại ka chọn chức năng (1-5): ").strip()
 
-    # Bẫy 4: Nhập lựa chọn menu không phải là số (như abc, @, 2.5)
     if not choice_input.isdigit():
         print("❌ Lỗi: Lựa chọn không hợp lệ (phải là số nguyên). Vui lòng nhập lại!")
         continue
 
     choice = int(choice_input)
 
-    # Bẫy 3: Nhập lựa chọn menu không nằm trong khoảng từ 1 đến 5
     if choice < 1 or choice > 5:
         print("❌ Lỗi: Lựa chọn không nằm trong phạm vi từ 1 đến 5. Vui lòng nhập lại!")
         continue
@@ -97,7 +94,6 @@ while True:
 
         title = input("Nhập tiêu đề video: ").strip()
 
-        # Bẫy 2: Nhập mô tả video rỗng hoặc chỉ có khoảng trắng
         while True:
             description = input("Nhập mô tả video: ").strip()
             if not description:
@@ -105,7 +101,6 @@ while True:
             else:
                 break
 
-        # Nhập và xử lý tách chuỗi hashtag ban đầu
         hashtag_input = input("Nhập danh sách hashtag (cách nhau bởi dấu phẩy): ")
         if hashtag_input.strip():
             # Tách bằng dấu phẩy và loại bỏ khoảng trắng thừa của từng hashtag
@@ -115,7 +110,6 @@ while True:
 
         has_data = True
         
-        # Xuất báo cáo thống kê theo đúng yêu cầu nghiệp vụ
         print("\n--- BÁO CÁO THỐNG KÊ VIDEO ---")
         print(f"+ Tên tài khoản (đã trim): {username}")
         print(f"+ Tiêu đề (Chuẩn hóa Title Case): {title.title()}")
@@ -127,19 +121,16 @@ while True:
         print(f"+ Mô tả video chuyển sang chữ thường: {description.lower()}")
         print(f"+ Mô tả video chuyển sang chữ hoa: {description.upper()}")
 
-    # CHỨC NĂNG 2: CHUẨN HÓA TÊN TÀI KHOẢN TIKTOK
     elif choice == 2:
         if not has_data:
             print("⚠️ Đại ka cần nhập dữ liệu ở Chức năng 1 trước!")
             continue
         
-        # Yêu cầu: có ký tự @ đằng trước và viết thường toàn bộ
         normalized_username = f"@{username.lower()}"
         print("\n--- CHUẨN HÓA TÊN TÀI KHOẢN ---")
         print(f"Tên tài khoản ban đầu: \"{username}\"")
         print(f"Tên tài khoản sau khi được chuẩn hoá: \"{normalized_username}\"")
 
-    # CHỨC NĂNG 3: KIỂM TRA HASHTAG HỢP LỆ
     elif choice == 3:
         if not has_data:
             print("⚠️ Đại ka cần nhập dữ liệu ở Chức năng 1 trước!")
@@ -147,7 +138,6 @@ while True:
 
         new_hashtag = input("Nhập một hashtag cần kiểm tra: ").strip()
 
-        # Kiểm tra tuần tự theo 5 quy tắc cấu trúc đề bài yêu cầu
         if not new_hashtag:
             print("❌ Lỗi: Hashtag không được rỗng")
         elif not new_hashtag.startswith("#"):
@@ -163,7 +153,6 @@ while True:
             hashtags.append(new_hashtag)
             print(f"-> Danh sách hashtag hiện tại của video: {hashtags}")
 
-    # CHỨC NĂNG 4: TÌM KIẾM VÀ THAY THẾ TỪ KHÓA TRONG MÔ TẢ VIDEO
     elif choice == 4:
         if not has_data:
             print("⚠️ Đại ka cần nhập dữ liệu ở Chức năng 1 trước!")
@@ -172,7 +161,6 @@ while True:
         search_word = input("Nhập từ khóa cần tìm: ")
         replace_word = input("Nhập từ khóa thay thế: ")
 
-        # Kiểm tra sự tồn tại của từ khóa trong chuỗi mô tả
         if search_word in description:
             count_appear = description.count(search_word)
             description = description.replace(search_word, replace_word)
@@ -182,7 +170,6 @@ while True:
         else:
             print(f"❌ Không tìm thấy từ khóa \"{search_word}\" trong mô tả video.")
 
-    # CHỨC NĂNG 5: THOÁT CHƯƠNG TRÌNH
     elif choice == 5:
         print("Thoát chương trình")
         break
